@@ -70,6 +70,8 @@ export class MQTTService {
       port: number,
       clientId: string,
       path?: string,
+      username?: string,
+      password?: string
     }): any {
     return this._load('paho_mqtt').then(data => {
       // set callback handlers
@@ -78,7 +80,11 @@ export class MQTTService {
       this.client.onMessageArrived = onMessageArrived.bind(this);
       // client connect and subscribe
       // console.log(this.client);
-      return this.client.connect({onSuccess: this._onConnect.bind(this, TOPIC)});
+      return this.client.connect({
+        onSuccess: this._onConnect.bind(this, TOPIC),
+        userName: MQTT_CONFIG.username,
+        password: MQTT_CONFIG.password
+      });
     }).catch(error => {
       console.log(error);
     });
