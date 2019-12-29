@@ -86,6 +86,7 @@ export class MQTTService {
       // console.log(this.client);
       return this.client.connect({
         onSuccess: this._onConnect.bind(this, TOPIC),
+        onFailure: this._onConnectionLost.bind(this)
         userName: MQTT_CONFIG.username,
         password: MQTT_CONFIG.password
       });
@@ -127,7 +128,15 @@ export class MQTTService {
 
     return this.client;
   }
+
+  private _onConnectionLost(error){
+    console.log("errConnect");
+    if (error.errorCode !== 0) {
+      console.log("ConnectionLost:" + error.errorMessage);
+    }
+  }
 }
+
 
 
 interface Scripts {
