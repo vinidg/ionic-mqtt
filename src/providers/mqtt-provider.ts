@@ -116,7 +116,7 @@ export class MQTTService {
     // subscribe the topic
     topic.forEach((tp) => {
       this.client.subscribe(tp);
-      var message = new Paho.MQTT.Message("Hello");
+      var message = new Paho.Message("Hello");
       message.destinationName = tp;
       this.client.send(message);
     });
