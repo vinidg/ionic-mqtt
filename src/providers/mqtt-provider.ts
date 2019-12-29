@@ -112,7 +112,7 @@ export class MQTTService {
   // called when the client connects
   private _onConnect(topic: string[]) {
     // Once a connection has been made, make a subscription and send a message.
-    // console.log("onConnect");
+    console.log("onConnect");
     // subscribe the topic
     topic.forEach((tp) => {
       this.client.subscribe(tp);
