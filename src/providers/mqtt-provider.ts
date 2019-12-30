@@ -89,6 +89,9 @@ export class MQTTService {
         onFailure: this._onConnectionLost.bind(this),
         useSSL: true,
         reconnect: true,
+        timeout: 5,
+        keepAliveInterval: 60,
+        cleanSession: true,
         userName: MQTT_CONFIG.username,
         password: MQTT_CONFIG.password
       });
