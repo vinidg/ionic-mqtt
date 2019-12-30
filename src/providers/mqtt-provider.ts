@@ -83,7 +83,7 @@ export class MQTTService {
       this.client.onConnectionLost = onConnectionLost.bind(this);
       this.client.onMessageArrived = onMessageArrived.bind(this);
       // client connect and subscribe
-      // console.log(this.client);
+      console.log(this.client);
       return this.client.connect({
         onSuccess: this._onConnect.bind(this, TOPIC),
         onFailure: this._onConnectionLost.bind(this),
