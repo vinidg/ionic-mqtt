@@ -87,6 +87,8 @@ export class MQTTService {
       return this.client.connect({
         onSuccess: this._onConnect.bind(this, TOPIC),
         onFailure: this._onConnectionLost.bind(this),
+        useSSL: true,
+        reconnect: true,
         userName: MQTT_CONFIG.username,
         password: MQTT_CONFIG.password
       });
