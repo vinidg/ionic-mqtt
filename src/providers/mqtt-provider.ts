@@ -73,7 +73,10 @@ export class MQTTService {
       username?: string,
       password?: string
     }): any {
+      console.log("Loading Paho");
     return this._load('paho_mqtt').then(data => {
+      console.log("Load Paho");
+      
       // set callback handlers
       if (MQTT_CONFIG.path.length > 0) {
         this.client = new Paho.Client(MQTT_CONFIG.host, Number(MQTT_CONFIG.port), MQTT_CONFIG.path, MQTT_CONFIG.clientId);
@@ -90,7 +93,6 @@ export class MQTTService {
         useSSL: true,
         reconnect: true,
         timeout: 5,
-        keepAliveInterval: 60,
         cleanSession: true,
         userName: MQTT_CONFIG.username,
         password: MQTT_CONFIG.password
