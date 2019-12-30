@@ -78,13 +78,9 @@ export class MQTTService {
       console.log("Load Paho");
       
       // set callback handlers
-      if (MQTT_CONFIG.path.length > 0) {
-        this.client = new Paho.Client(MQTT_CONFIG.host, Number(MQTT_CONFIG.port), MQTT_CONFIG.path, MQTT_CONFIG.clientId);
-      } else {
-        this.client = new Paho.Client(MQTT_CONFIG.host, Number(MQTT_CONFIG.port), MQTT_CONFIG.clientId);
-      }
-      this.client.onConnectionLost = onConnectionLost.bind(this);
-      this.client.onMessageArrived = onMessageArrived.bind(this);
+      this.client = new Paho.Client(MQTT_CONFIG.host, Number(MQTT_CONFIG.port), MQTT_CONFIG.path || "/mqtt", MQTT_CONFIG.clientId);
+        this.client.onConnectionLost = onConnectionLost.bind(this);
+        this.client.onMessageArrived = onMessageArrived.bind(this);
       // client connect and subscribe
       console.log(this.client);
       return this.client.connect({
